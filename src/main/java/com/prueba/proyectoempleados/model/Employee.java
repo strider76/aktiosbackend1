@@ -27,6 +27,6 @@ public class Employee {
     private Gender gender;
     @Temporal(TemporalType.DATE)
     @Column(name = "hire_date", nullable = false)
-    private Date HireDate;
+    private Date hireDate;
 
 }

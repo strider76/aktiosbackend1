@@ -3,6 +3,7 @@ package com.prueba.proyectoempleados.service;
 import com.prueba.proyectoempleados.dao.EmployeeRepository;
 import com.prueba.proyectoempleados.dto.EmployeeDTO;
 import com.prueba.proyectoempleados.exception.EmployeeNotFoundException;
+import com.prueba.proyectoempleados.mapper.EmployeeMapper;
 import com.prueba.proyectoempleados.model.Employee;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,9 @@ public class EmployeeServiceTest {
     @Autowired
     EmployeeService employeeService;
 
+    @Autowired
+    EmployeeMapper employeeMapper;
+
     @MockBean
     EmployeeRepository employeeRepository;
 
@@ -35,7 +39,9 @@ public class EmployeeServiceTest {
 
     @Test
     void getEmployeeByNameTest() throws EmployeeNotFoundException {
-        EmployeeDTO employee = employeeService.getEmployeeBycompleteName("manolo","de los palotes");
+        EmployeeDTO employee = employeeMapper.employeeToEmployeeDTO(
+                employeeService.getEmployeeBycompleteName("manolo","de los palotes")
+        );
         EmployeeDTO employeeEsperado = new EmployeeDTO();
         employeeEsperado.setName("manolo");
         employeeEsperado.setLastName("de los palotes");
