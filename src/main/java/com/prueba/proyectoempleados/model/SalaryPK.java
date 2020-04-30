@@ -5,22 +5,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Embeddable
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class SalaryPK implements Serializable {
 
-    @Column(name = "emp_no", nullable = false)
-    private Integer idempleado;
+    @ManyToOne()
+    @JoinColumn(name = "emp_no")
+    private Employee idempleado;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "from_date", nullable = false)

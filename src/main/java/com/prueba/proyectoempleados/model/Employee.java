@@ -3,7 +3,9 @@ package com.prueba.proyectoempleados.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,4 +31,9 @@ public class Employee {
     @Column(name = "hire_date", nullable = false)
     private Date hireDate;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idempleado")
+    private List<Salaries> salaries;
+
+    @OneToMany(mappedBy = "empleadoId")
+    private List<DepartmentEmployees> departmentEmployees = new ArrayList<>();
 }
